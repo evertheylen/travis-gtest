@@ -9,7 +9,7 @@ dist: trusty
 
 addons:
   apt:
-    packages:
+    packages: &default_packages
       - libboost-all-dev
       - libhdf5-serial-dev
   
@@ -19,14 +19,15 @@ matrix:
       addons:
       apt:
           sources:
-          - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
-          - gcc-5
-          - g++-5
+            - *default_packages
+            - gcc-5
+            - g++-5
       env: 
-          - CC_COMPILER_NAME='gcc-5'
-          - CXX_COMPILER_NAME='g++-5'
-          - OMP_NUM_THREADS=4
+        - CC_COMPILER_NAME='gcc-5'
+        - CXX_COMPILER_NAME='g++-5'
+        - OMP_NUM_THREADS=4
       
     - compiler: clang
       addons:
@@ -34,6 +35,7 @@ matrix:
           sources:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
+            - *default_packages
             - clang-3.8
       env: 
         - CC_COMPILER_NAME='clang-3.8'
