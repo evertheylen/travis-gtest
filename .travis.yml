@@ -3,8 +3,8 @@ language: cpp
 os:
   - linux
   #- osx
+
 dist: trusty
-sudo: required
 
 # Some advice on this configuration was taken from:
 # https://genbattle.bitbucket.io/blog/2016/01/17/c++-travis-ci/?
@@ -40,17 +40,12 @@ matrix:
         - CXX=clang++-3.8
         - OMP_NUM_THREADS=4
 
-script:
-  # writes xml details to test_detail.xml, output to gtest_output.txt
-  - ./some_tests --gtest_output=xml --gtest_color=yes > gtest_output.txt 2>&1
-
-after_script:
-  - ./print-gtest.py test_detail.xml
-  - cat gtest_output.txt
-  
 before_install:
   - cmake .
   - make
+  
+script:
+  - ./travis.sh
 
 notifications:
   email: false
