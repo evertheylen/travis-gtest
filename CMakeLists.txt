@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.2)
+cmake_minimum_required(VERSION 3.2.2)
 
 set(PROJECT_NAME travis-gtest)
 project(${PROJECT_NAME} CXX)
@@ -25,7 +25,7 @@ if(NOT WIN32)
 endif()
 
 
-message("${BoldCyan}>>> Settings${ColorReset}")
+message("\n${BoldCyan}>>> Settings${ColorReset}")
 get_filename_component(TEST_ROOT . ABSOLUTE)
 get_filename_component(WORKSPACE_ROOT ${TEST_ROOT}/.. ABSOLUTE)
 
