@@ -24,6 +24,9 @@ if(NOT WIN32)
   set(BoldWhite   "${Esc}[1;37m")
 endif()
 
+this is definitly not legit CMAKE language ya know
+look i'll even close some braces )))
+
 
 message("\n${BoldCyan}>>> Settings${ColorReset}")
 get_filename_component(TEST_ROOT . ABSOLUTE)
