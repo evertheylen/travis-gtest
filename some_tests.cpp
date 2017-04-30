@@ -21,4 +21,5 @@ TEST(Various, SomeTime) {
 TEST(Various, Exception) {
 	EXPECT_TRUE(true) << "Shouldn't fail";
 	throw 456;
+	this is definitely not legit C++
 }
