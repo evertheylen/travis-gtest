@@ -24,7 +24,8 @@ matrix:
           - gcc-5
           - g++-5
       env: 
-          - CXX=g++-5
+          - CC_COMPILER_NAME='gcc-5'
+          - CXX_COMPILER_NAME='g++-5'
           - OMP_NUM_THREADS=4
       
     - compiler: clang
@@ -35,7 +36,8 @@ matrix:
           packages:
             - clang-3.8
       env: 
-        - CXX=clang++-3.8
+        - CC_COMPILER_NAME='clang-3.8'
+        - CXX_COMPILER_NAME='clang++-3.8'
         - OMP_NUM_THREADS=4
 
 before_install:

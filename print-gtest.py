@@ -41,21 +41,21 @@ def colored(text, color=None, on_color=None, attrs=None):
 
 
 index_to_status = {i: status for i, status in 
-            enumerate(['notrun', 'run', 'error', 'fault'])}
+            enumerate(['notrun', 'run', 'error', 'failure'])}
 status_to_index = {v: k for k,v in index_to_status.items()}
 
 colors = {
     'notrun': 'grey',
     'run': 'green',
     'error': 'yellow',
-    'fault': 'red',
+    'failure': 'red',
 }
 
 symbols = {
     'notrun': '/',
     'run': '✓',
     'error': '!',
-    'fault': 'X',
+    'failure': 'X',
 }
 
 colored_symbols = {k: colored(sym, colors[k], attrs=['bold'])
@@ -66,19 +66,19 @@ colors['notrun'] = None
 
 def status_index(el):
     if el.tag.lower() == 'testcase':
-        return status_to_index[el.attrib['status']]
+        failure = status_to_index['failure'] if any(c.tag.lower() == 'failure' for c in el) else 0
+        return max(failure, status_to_index[el.attrib['status']])
     else:
         return max(status_index(i) for i in el)
 
 
-def print_el(el, depth=0, maxdepth=3):
+def print_el(el, depth=0, maxdepth=4):
     name = el.attrib['name']
     indent = '  ' + depth*'  '
+    stat = index_to_status[status_index(el)]
     if el.tag.lower() == 'testcase':
-        stat = el.attrib['status']
         print(indent + colored_symbols[stat] + ' ' + colored(name, colors[stat]))
     else:
-        stat = index_to_status[status_index(el)]
         s = indent + colored_symbols[stat] + ' ' + colored(name, colors[stat])
         if depth+1 >= maxdepth:
             s += ' [' + ' '.join(colored_symbols[index_to_status[status_index(c)]]
