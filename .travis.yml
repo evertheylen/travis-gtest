@@ -1,13 +1,11 @@
-# TODO specify exact versions on which it has to work
-language: cpp
-os:
-  - linux
-  #- osx
-
-dist: trusty
-
 # Some advice on this configuration was taken from:
 # https://genbattle.bitbucket.io/blog/2016/01/17/c++-travis-ci/?
+
+# TODO specify exact versions on which it has to work
+
+language: cpp
+
+dist: trusty
 
 addons:
   apt:
