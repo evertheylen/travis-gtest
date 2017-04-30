@@ -1,6 +1,6 @@
 # TODO specify exact versions on which it has to work
 language: none
-script: ./some_tests --gtest-output=xml  # writes details to test_detail.xml
+script: ./some_tests --gtest_output=xml  # writes details to test_detail.xml
 os:
   - linux
   #- osx
