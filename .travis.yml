@@ -10,7 +10,7 @@ dist: trusty
 
 addons:
   apt:
-    sources:
+    sources: &sources
       - ubuntu-toolchain-r-test
     packages: &deps
       - libboost-all-dev
@@ -21,6 +21,8 @@ matrix:
     - compiler: gcc
       addons:
         apt:
+          sources:
+            - *sources
           packages:
             - *deps
             - gcc-5
@@ -33,6 +35,8 @@ matrix:
     - compiler: clang
       addons:
         apt:
+          sources:
+            - *sources
           packages:
             - *deps
             - clang-3.8
