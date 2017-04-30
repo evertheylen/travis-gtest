@@ -1,42 +1,52 @@
 # TODO specify exact versions on which it has to work
 language: cpp
-script: ./some_tests --gtest_output=xml  # writes details to test_detail.xml
 os:
   - linux
   #- osx
 dist: trusty
 sudo: required
-addons:
-  apt:
-    sources:
-      - sourceline: 'ppa:ubuntu-toolchain-r/test'
-    packages:
-      - gcc-5
-      - g++-5
-      - libboost-all-dev
-      - libhdf5-serial-dev
 
 # Some advice on this configuration was taken from:
 # https://genbattle.bitbucket.io/blog/2016/01/17/c++-travis-ci/?
 
-env: 
-  - CXX=g++-5
-    OMP_NUM_THREADS=4
+env:
+  - OMP_NUM_THREADS=4
 
+addons:
+  apt:
+    packages:
+      - libboost-all-dev
+      - libhdf5-serial-dev
+  
 matrix:
   include:
-    - addons:
+    - compiler: gcc
+      addons:
+      apt:
+          sources:
+          - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+          - gcc-5
+          - g++-5
+      env: 
+          - CXX=g++-5
+      
+    - compiler: clang
+      addons:
         apt:
           sources:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - clang-3.8
-            - libboost-all-dev
-            - libhdf5-serial-dev
       env: 
         - CXX=clang++-3.8
-          OMP_NUM_THREADS=4
 
+script:
+  # writes xml details to test_detail.xml, output to gtest_output.txt
+  - ./some_tests --gtest_output=xml > gtest_output.txt 2>&1 
+  - ./print-gtest.py test_detail.xml
+  - cat gtest_output.txt
+  
 before_install:
   - cmake .
   - make
