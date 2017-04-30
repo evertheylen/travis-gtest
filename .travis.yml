@@ -3,7 +3,7 @@
 
 # TODO specify exact versions on which it has to work
 
-language: cpp
+language: generic
 
 dist: trusty
 
