@@ -48,7 +48,7 @@ matrix:
 before_install:
   - cmake .
   - make
-  
+
 script:
   - ./travis.sh
 
