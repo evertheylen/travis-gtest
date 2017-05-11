@@ -24,8 +24,8 @@ if(NOT WIN32)
   set(BoldWhite   "${Esc}[1;37m")
 endif()
 
-this is definitly not legit CMAKE language ya know
-look i'll even close some braces )))
+# this is definitly not legit CMAKE language ya know
+# look i'll even close some braces )))
 
 
 message("\n${BoldCyan}>>> Settings${ColorReset}")
@@ -52,8 +52,6 @@ set(SOURCES
 )
 
 message("SOURCES: ${SOURCES}")
-
-enable_testing()
 
 #set(BUILD_GTEST ON CACHE BOOL "Build Google Test library")
 #set(BUILD_GMOCK OFF CACHE BOOL "Build Google Mock library")
@@ -86,8 +84,4 @@ foreach(TEST_NAME ${TEST_LIST})
     set_property(TARGET ${EXEC_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 
     target_link_libraries(${EXEC_NAME} ${LIBS})
-    add_test(
-        NAME ${EXEC_NAME}
-        COMMAND $<TARGET_FILE:${EXEC_NAME}>
-    )
 endforeach(TEST_NAME)

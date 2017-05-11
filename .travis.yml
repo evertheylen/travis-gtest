@@ -17,6 +17,8 @@ addons:
       - libhdf5-serial-dev
   
 matrix:
+  fast_finish: true
+  
   include:
     - compiler: gcc
       addons:
