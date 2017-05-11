@@ -1,7 +1,7 @@
 
 // Haha not literally, just mostly the same
 
-vector<int> otherStupidFunction() {
+vector<int> otherStupidFunction2() {
 	// Some comment
 	vector<int> res;
 	for (int i=0; i<50; i++) {
