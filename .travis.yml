@@ -47,7 +47,9 @@ matrix:
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
     
-    - language: js
+    - language: node_js
+      addons:
+        apt:
       before_script:
         - npm install -g jscpd
       script:
