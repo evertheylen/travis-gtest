@@ -48,12 +48,15 @@ matrix:
         - OMP_NUM_THREADS=4
     
     - language: node_js
-      addons:
-        apt:
+      before_instal:
+        - echo nothing
       before_script:
         - npm install -g jscpd
       script:
         - jscpd -e gtest
+      addons:
+        apt:
+      
 
 before_install:
   - cmake .
