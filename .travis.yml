@@ -46,6 +46,12 @@ matrix:
         - CC='clang-3.8'
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
+    
+    - language: js
+      before_script:
+        - npm install -g jscpd
+      script:
+        - jscpd -e gtest
 
 before_install:
   - cmake .
