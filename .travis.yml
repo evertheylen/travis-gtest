@@ -48,7 +48,7 @@ matrix:
         - OMP_NUM_THREADS=4
     
     - language: node_js
-      before_instal:
+      before_install:
         - echo nothing
       before_script:
         - npm install -g jscpd
