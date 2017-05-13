@@ -19,8 +19,11 @@ dist: trusty
 jobs:
   include:
     - stage: Code Quality
+      language: node_js
     - stage: Clang Compiler
+      language: generic
     - stage: GNU Compiler
+      language: generic
 
 matrix:
   fast_finish: true
