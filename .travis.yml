@@ -16,7 +16,7 @@ addons:
       - libboost-all-dev
       - libhdf5-serial-dev
   
-jobs:
+matrix:
   include:
     - stage: Code Quality
       language: node_js
@@ -60,7 +60,6 @@ jobs:
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
 
-matrix:
   allowed_failures:
     - language: node_js
       node_js:
