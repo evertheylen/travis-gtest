@@ -15,8 +15,15 @@ dist: trusty
     #packages: &deps
       #- libboost-all-dev
       #- libhdf5-serial-dev
-  
+
+jobs:
+  include:
+    - stage: Code Quality
+    - stage: Clang Compiler
+    - stage: GNU Compiler
+
 matrix:
+  fast_finish: true
   allow_failures:
     - stage: Code Quality
       language: node_js
@@ -31,12 +38,9 @@ matrix:
       addons:
         apt:
 
-  include:
+  include:      
     - stage: Code Quality
       language: node_js
-      env: DO=NOTHING
-      
-    - language: node_js
       node_js:
         - "node"
       before_install:
@@ -76,11 +80,6 @@ matrix:
         - CC='clang-3.8'
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
-
-  exclude:
-    - stage: Code Quality
-      language: node_js
-      env: DO=NOTHING
 
 
 before_install:
