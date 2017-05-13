@@ -61,7 +61,8 @@ matrix:
         - OMP_NUM_THREADS=4
 
   allowed_failures:
-    - language: node_js
+    - stage: Code Quality
+      language: node_js
       node_js:
         - "node"
       before_install:
