@@ -18,6 +18,19 @@ addons:
   
 jobs:
   include:
+    - stage: Code Quality
+      language: node_js
+      node_js:
+        - "node"
+      before_install:
+        - echo nothing
+      before_script:
+        - npm install -g jscpd
+      script:
+        - jscpd --skip-comments -f "*.{cpp,h}"
+      addons:
+        apt:
+
     - stage: GNU Compiler
       compiler: gcc
       addons:
@@ -47,6 +60,10 @@ jobs:
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
     
+
+matrix:
+  fast_finish: true
+  allowed_failures:
     - stage: Code Quality
       language: node_js
       node_js:
