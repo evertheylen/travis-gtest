@@ -59,10 +59,7 @@ jobs:
         - CC='clang-3.8'
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
-    
-
-matrix:
-  fast_finish: true
+        
   allowed_failures:
     - stage: Code Quality
       language: node_js

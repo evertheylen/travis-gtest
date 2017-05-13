@@ -42,7 +42,7 @@ vector<int> someStupidFunction() {
 			k += i*j;
 			i -= k;
 			return k;
-		}
+		};
 		
 		while (i%45 == 13) {
 			f(f(i));
