@@ -60,7 +60,7 @@ matrix:
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
 
-  allowed_failures:
+  allow_failures:
     - stage: Code Quality
       language: node_js
       node_js:
