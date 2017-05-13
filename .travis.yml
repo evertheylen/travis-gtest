@@ -34,6 +34,9 @@ matrix:
   include:
     - stage: Code Quality
       language: node_js
+      env: DO=NOTHING
+      
+    - language: node_js
       node_js:
         - "node"
       before_install:
@@ -73,7 +76,12 @@ matrix:
         - CC='clang-3.8'
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
-      
+
+  exclude:
+    - stage: Code Quality
+      language: node_js
+      env: DO=NOTHING
+
 
 before_install:
   - echo cmake .
