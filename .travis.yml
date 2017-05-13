@@ -16,11 +16,10 @@ addons:
       - libboost-all-dev
       - libhdf5-serial-dev
   
-matrix:
-  fast_finish: true
-  
+jobs:
   include:
-    - compiler: gcc
+    - stage: GNU Compiler
+      compiler: gcc
       addons:
         apt:
           sources:
@@ -34,7 +33,8 @@ matrix:
         - CXX='g++-5'
         - OMP_NUM_THREADS=4
       
-    - compiler: clang
+    - stage: Clang compiler
+      compiler: clang
       addons:
         apt:
           sources:
@@ -47,7 +47,8 @@ matrix:
         - CXX='clang++-3.8'
         - OMP_NUM_THREADS=4
     
-    - language: node_js
+    - stage: Code Quality
+      language: node_js
       node_js:
         - "node"
       before_install:
@@ -55,7 +56,7 @@ matrix:
       before_script:
         - npm install -g jscpd
       script:
-        - jscpd -e gtest
+        - jscpd --skip-comments -f "*.{cpp,h}"
       addons:
         apt:
       
